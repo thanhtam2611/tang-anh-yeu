@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>anh yêu vui là được</title>
+  <title>Tỏ tình anh yêu</title>
   <style>
     body {
       margin: 0;
@@ -14,32 +14,79 @@
       white-space: pre-wrap;
       overflow-x: hidden;
     }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
     .heart {
       position: fixed;
       top: -20px;
       color: pink;
       animation: fall 5s linear infinite;
     }
+
     @keyframes fall {
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+
+    /* Thỏ và cà rốt */
+    #bunny-area {
+      position: fixed;
+      bottom: 30px;
+      left: 10%;
+      font-size: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #bunny {
+      animation: hop 3s infinite ease-in-out;
+      display: inline-block;
+    }
+
+    @keyframes hop {
+      0% { transform: translateX(0) translateY(0); }
+      20% { transform: translateX(20px) translateY(-15px); }
+      40% { transform: translateX(40px) translateY(0); }
+      60% { transform: translateX(60px) translateY(-15px); }
+      80% { transform: translateX(80px) translateY(0); }
+      100% { transform: translateX(100px) translateY(0); }
+    }
   </style>
 </head>
 <body>
-<body>
-  <!-- Nút phát nhạc -->
-  <button onclick="playMusic()" style="position: fixed; top: 10px; left: 10px; z-index: 999; padding: 10px; background: pink; color: black; border: none; border-radius: 5px;">💖 Bấm để nghe nhạc 💖</button>
 
-  <!-- Thẻ audio -->
+  <!-- Nút phát nhạc -->
+  <button onclick="playMusic()">💖 Bấm để nghe nhạc 💖</button>
+
+  <!-- Nhạc nền -->
   <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
     Trình duyệt của bạn không hỗ trợ phát nhạc.
   </audio>
 
+  <!-- Khung hiển thị nội dung -->
   <div id="output"></div>
 
+  <!-- Thỏ nhảy tới cà rốt -->
+  <div id="bunny-area">
+    <span id="bunny">🐰</span>
+    <span id="carrot">🥕</span>
+  </div>
+
   <script>
+    // Hiệu ứng đánh chữ
     const text = `Hello anh iu tuyệt zời nhất của emmm 💖
 
 Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mong anh sẽ lắng nghe nhaaa!
@@ -47,7 +94,8 @@ Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mo
 1. Lời cảm ơn từ em:
 Anh ơi, trong 1 năm qua, anh đã là một phần không thể thiếu trong cuộc sống của em. Anh luôn đem lại cho em niềm vui, hạnh phúc và sự ấm áp. Em cảm ơn vì tất cả.
 
-2. Chăm sóc em thật lòng. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
+2. Em yêu anh vì:
+Anh luôn bên em khi em cần, động viên khi em gặp khó khăn, và chăm sóc, yêu thương em thật lòng vô điều kiện. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
 
 Nothing's gonna change my love for you... 💗`;
 
@@ -61,7 +109,7 @@ Nothing's gonna change my love for you... 💗`;
     }
     typeEffect();
 
-    // Hiệu ứng trái tim rơi
+    // Trái tim rơi
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -72,11 +120,13 @@ Nothing's gonna change my love for you... 💗`;
 
       setTimeout(() => heart.remove(), 5000);
     }, 300);
-    // Hàm phát nhạc khi bấm nút
+
+    // Phát nhạc khi bấm nút
     function playMusic() {
-      const music = document.getElementById("bgMusic");
-      music.play();
+      const audio = document.getElementById("bgMusic");
+      audio.play();
     }
   </script>
+
 </body>
 </html>
