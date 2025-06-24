@@ -15,17 +15,6 @@
       overflow-x: hidden;
     }
 
-    button {
-      background-color: #ff69b4;
-      color: white;
-      font-size: 1rem;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
-
     .heart {
       position: fixed;
       top: -20px;
@@ -38,55 +27,78 @@
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Thỏ và cà rốt */
-    #bunny-area {
+    .meeting-scene {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      margin-top: 3rem;
+      overflow: hidden;
+    }
+
+    .thing-left, .thing-right {
+      position: absolute;
+      top: 30px;
+      font-size: 2.5rem;
+      animation-duration: 4s;
+      animation-fill-mode: forwards;
+    }
+
+    .thing-left {
+      left: -50px;
+      animation-name: moveRight;
+    }
+
+    .thing-right {
+      right: -50px;
+      animation-name: moveLeft;
+    }
+
+    @keyframes moveRight {
+      0% { left: -50px; }
+      100% { left: calc(50% - 60px); }
+    }
+
+    @keyframes moveLeft {
+      0% { right: -50px; }
+      100% { right: calc(50% - 60px); }
+    }
+
+    button {
       position: fixed;
-      bottom: 30px;
-      left: 10%;
-      font-size: 2rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
+      top: 10px;
+      left: 10px;
       z-index: 1000;
-    }
-
-    #bunny {
-      animation: hop 3s infinite ease-in-out;
-      display: inline-block;
-    }
-
-    @keyframes hop {
-      0% { transform: translateX(0) translateY(0); }
-      20% { transform: translateX(20px) translateY(-15px); }
-      40% { transform: translateX(40px) translateY(0); }
-      60% { transform: translateX(60px) translateY(-15px); }
-      80% { transform: translateX(80px) translateY(0); }
-      100% { transform: translateX(100px) translateY(0); }
+      background: pink;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
   <!-- Nút phát nhạc -->
-  <button onclick="playMusic()">💖 Bấm để nghe nhạc 💖</button>
+  <button onclick="document.querySelector('audio').play()">💗 Bấm để nghe nhạc 💗</button>
 
-  <!-- Nhạc nền -->
-  <audio id="bgMusic" loop>
+  <!-- Nhạc nền từ file tải về -->
+  <audio id="bgmusic" autoplay loop>
     <source src="music.mp3" type="audio/mpeg">
     Trình duyệt của bạn không hỗ trợ phát nhạc.
   </audio>
 
-  <!-- Khung hiển thị nội dung -->
+  <!-- Hiển thị nội dung gõ chữ -->
   <div id="output"></div>
 
-  <!-- Thỏ nhảy tới cà rốt -->
-  <div id="bunny-area">
-    <span id="bunny">🐰</span>
-    <span id="carrot">🥕</span>
+  <!-- Thỏ và cà rốt chạy lại gần nhau -->
+  <div class="meeting-scene">
+    <div class="thing-left">🐰</div>
+    <div class="thing-right">🥕</div>
   </div>
 
   <script>
-    // Hiệu ứng đánh chữ
     const text = `Hello anh iu tuyệt zời nhất của emmm 💖
 
 Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mong anh sẽ lắng nghe nhaaa!
@@ -98,7 +110,6 @@ Anh ơi, trong 1 năm qua, anh đã là một phần không thể thiếu trong 
 Anh luôn bên em khi em cần, động viên khi em gặp khó khăn, và chăm sóc, yêu thương em thật lòng vô điều kiện. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
 
 Nothing's gonna change my love for you... 💗`;
-
     let i = 0;
     function typeEffect() {
       if (i < text.length) {
@@ -117,16 +128,8 @@ Nothing's gonna change my love for you... 💗`;
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 30 + 10 + "px";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 5000);
     }, 300);
-
-    // Phát nhạc khi bấm nút
-    function playMusic() {
-      const audio = document.getElementById("bgMusic");
-      audio.play();
-    }
   </script>
-
 </body>
 </html>
