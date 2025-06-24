@@ -81,15 +81,23 @@
 <body>
 
   <!-- Nút phát nhạc -->
-  <button onclick="document.getElementById('bgmusic').play()">
-  💖 BẤM NGHE NHẠC 💖
-</button>
+<button id="playButton">💖 BẤM NGHE NHẠC 💖</button>
 
-  <!-- Nhạc nền từ file tải về -->
-  <audio id="bgmusic" autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Trình duyệt của bạn không hỗ trợ phát nhạc.
-  </audio>
+<!-- Nhạc nền -->
+<audio id="bgmusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Trình duyệt của bạn không hỗ trợ phát nhạc.
+</audio>
+
+<script>
+  document.getElementById("playButton").addEventListener("click", () => {
+    const music = document.getElementById("bgmusic");
+    music.volume = 1;
+    music.play().catch((e) => {
+      alert("Không thể phát nhạc tự động. Hãy bấm lại lần nữa nhé!");
+    });
+  });
+</script>
 
   <!-- Hiển thị nội dung gõ chữ -->
   <div id="output"></div>
