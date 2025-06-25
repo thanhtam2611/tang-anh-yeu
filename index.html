@@ -80,21 +80,27 @@
 </head>
 <body>
 
-  <!-- Nút phát nhạc -->
-  <button id="musicBtn" onclick="playMusic()">🔊 BẬT ÂM THANH</button>
-  <div id="music-frame"></div>
+  <!-- Nút bật nhạc -->
+  <button onclick="document.getElementById('bgmusic').play()">
+    💖 BẤM NGHE NHẠC 💖
+  </button>
 
-  <!-- Nội dung đánh máy -->
+  <!-- Nhạc nền từ Dropbox -->
+  <audio id="bgmusic" autoplay loop>
+    <source src="https://www.dropbox.com/scl/fi/7frr4rey6104lamat0qqs/music.mp3?rlkey=7lsnoh8jydk2npquaou72mdo8&raw=1" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ phát nhạc.
+  </audio>
+
+  <!-- Hiển thị nội dung -->
   <div id="output"></div>
 
-  <!-- Thỏ và cà rốt chạy lại gần nhau -->
+  <!-- Thỏ và cà rốt chạy về nhau -->
   <div class="meeting-scene">
     <div class="thing-left">🐰</div>
     <div class="thing-right">🥕</div>
   </div>
 
   <script>
-    // Nội dung gõ từ từ
     const text = `Hello anh iu tuyệt zời nhất của emmm 💖
 
 Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mong anh sẽ lắng nghe nhaaa!
@@ -117,7 +123,7 @@ Nothing's gonna change my love for you... 💗`;
     }
     typeEffect();
 
-    // Hiệu ứng trái tim rơi 💖
+    // Hiệu ứng trái tim rơi
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -127,20 +133,6 @@ Nothing's gonna change my love for you... 💗`;
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }, 300);
-
-    // Phát nhạc từ YouTube khi bấm nút
-    function playMusic() {
-      const iframe = document.createElement("iframe");
-      iframe.width = "0";
-      iframe.height = "0";
-      iframe.src = "https://www.youtube.com/embed/QVsCHTnt9mo?autoplay=1&loop=1&playlist=QVsCHTnt9mo";
-      iframe.allow = "autoplay";
-      iframe.style.display = "none";
-      document.getElementById("music-frame").appendChild(iframe);
-      document.getElementById("musicBtn").innerText = "🎶 ĐANG PHÁT NHẠC...";
-      document.getElementById("musicBtn").disabled = true;
-    }
   </script>
-
 </body>
 </html>
