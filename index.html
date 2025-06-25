@@ -63,43 +63,26 @@
       100% { right: calc(50% - 60px); }
     }
 
-    button {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      background: pink;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
+    iframe {
+      margin-top: 2rem;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Nút phát nhạc -->
-<button id="playButton">💖 BẤM NGHE NHẠC 💖</button>
+  <!-- Video YouTube phát nhạc -->
+  <div style="text-align: center;">
+    <iframe width="360" height="215"
+      src="https://www.youtube.com/watch?v=QVsCHTnt9mo&list=RDQVsCHTnt9mo&start_radio=1"
+      title="Nothing's Gonna Change My Love for You"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-<!-- Nhạc nền -->
-<audio id="bgmusic" loop>
-  <source src="https://thanhtam2611.github.io/tang-anh-yeu/music.mp3" type="audio/mpeg">
-  Trình duyệt của bạn không hỗ trợ phát nhạc.
-</audio>
-
-<script>
-  document.getElementById("playButton").addEventListener("click", () => {
-    const music = document.getElementById("bgmusic");
-    music.volume = 1;
-    music.play().catch((e) => {
-      alert("Không thể phát nhạc tự động. Hãy bấm lại lần nữa nhé!");
-    });
-  });
-</script>
-
-  <!-- Hiển thị nội dung gõ chữ -->
+  <!-- Nội dung hiện dần từng ký tự -->
   <div id="output"></div>
 
   <!-- Thỏ và cà rốt chạy lại gần nhau -->
@@ -117,7 +100,7 @@ Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mo
 Anh ơi, trong 1 năm qua, anh đã là một phần không thể thiếu trong cuộc sống của em. Anh luôn đem lại cho em niềm vui, hạnh phúc và sự ấm áp. Em cảm ơn vì tất cả.
 
 2. Em yêu anh vì:
-Anh luôn bên em khi em cần, động viên khi em gặp khó khăn, và chăm sóc, yêu thương em thật lòng vô điều kiện. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
+Anh luôn bên em khi em cần, động viên khi em gặp khó khăn và chăm sóc, yêu thương em thật lòng vô điều kiện. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
 
 Nothing's gonna change my love for you... 💗`;
     let i = 0;
