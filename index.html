@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Anh yêu vui là được</title>
+  <title>Tỏ tình anh yêu</title>
   <style>
     body {
       margin: 0;
@@ -63,26 +63,28 @@
       100% { right: calc(50% - 60px); }
     }
 
-    iframe {
-      margin-top: 2rem;
-      border-radius: 12px;
+    button {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: pink;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- Video YouTube phát nhạc -->
-  <div style="text-align: center;">
-    <iframe width="360" height="215"
-      src="https://www.youtube.com/watch?v=QVsCHTnt9mo&list=RDQVsCHTnt9mo&start_radio=1"
-      title="Nothing's Gonna Change My Love for You"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
-  </div>
+  <!-- Nút phát nhạc -->
+  <button id="musicBtn" onclick="playMusic()">🔊 BẬT ÂM THANH</button>
+  <div id="music-frame"></div>
 
-  <!-- Nội dung hiện dần từng ký tự -->
+  <!-- Nội dung đánh máy -->
   <div id="output"></div>
 
   <!-- Thỏ và cà rốt chạy lại gần nhau -->
@@ -92,6 +94,7 @@
   </div>
 
   <script>
+    // Nội dung gõ từ từ
     const text = `Hello anh iu tuyệt zời nhất của emmm 💖
 
 Hôm nay em tới đây để mang những lời nhắn nhủ tới anh đó. Mong anh sẽ lắng nghe nhaaa!
@@ -103,6 +106,7 @@ Anh ơi, trong 1 năm qua, anh đã là một phần không thể thiếu trong 
 Anh luôn bên em khi em cần, động viên khi em gặp khó khăn và chăm sóc, yêu thương em thật lòng vô điều kiện. Cảm ơn vì anh đã xuất hiện và làm em cảm nhận được tình yêu thực sự ❤️
 
 Nothing's gonna change my love for you... 💗`;
+
     let i = 0;
     function typeEffect() {
       if (i < text.length) {
@@ -113,7 +117,7 @@ Nothing's gonna change my love for you... 💗`;
     }
     typeEffect();
 
-    // Trái tim rơi
+    // Hiệu ứng trái tim rơi 💖
     setInterval(() => {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -123,6 +127,20 @@ Nothing's gonna change my love for you... 💗`;
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }, 300);
+
+    // Phát nhạc từ YouTube khi bấm nút
+    function playMusic() {
+      const iframe = document.createElement("iframe");
+      iframe.width = "0";
+      iframe.height = "0";
+      iframe.src = "https://www.youtube.com/embed/QVsCHTnt9mo?autoplay=1&loop=1&playlist=QVsCHTnt9mo";
+      iframe.allow = "autoplay";
+      iframe.style.display = "none";
+      document.getElementById("music-frame").appendChild(iframe);
+      document.getElementById("musicBtn").innerText = "🎶 ĐANG PHÁT NHẠC...";
+      document.getElementById("musicBtn").disabled = true;
+    }
   </script>
+
 </body>
 </html>
